@@ -1,0 +1,289 @@
+object Form1: TForm1
+  Left = 383
+  Height = 604
+  Top = 94
+  Width = 969
+  BorderStyle = bsSingle
+  Caption = 'Справочник филателиста'
+  ClientHeight = 584
+  ClientWidth = 969
+  Color = 10485663
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  LCLVersion = '1.4.0.4'
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 581
+    Top = 3
+    Width = 640
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'Страна'
+        Width = 100
+        FieldName = 'country'
+      end    
+      item
+        Title.Caption = 'Стоимость'
+        Width = 100
+        FieldName = 'many'
+      end    
+      item
+        Title.Caption = 'Год выпуска'
+        Width = 100
+        FieldName = 'year'
+      end    
+      item
+        Title.Caption = 'Тематика'
+        Width = 100
+        FieldName = 'tematika'
+      end    
+      item
+        Title.Caption = 'Тираж'
+        Width = 100
+        FieldName = 'tirazh'
+      end    
+      item
+        Title.Caption = 'Особенности'
+        Width = 100
+        FieldName = 'osobenosti'
+      end>
+    DataSource = DataSource1
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 664
+    Height = 56
+    Top = 256
+    Width = 280
+    Caption = 'Удалить текущую запись'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -21
+    Font.Name = '@Arial Unicode MS'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Button3: TButton
+    Left = 664
+    Height = 56
+    Top = 160
+    Width = 280
+    Caption = 'Показать все записи'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -24
+    Font.Name = '@Arial Unicode MS'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = Button3Click
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 664
+    Height = 59
+    Top = 360
+    Width = 280
+    Caption = 'Показать полную информацию'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -17
+    Font.Name = '@Arial Unicode MS'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 3
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'country'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'many'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'year'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'tematika'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'tirazh'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'osobenosti'
+        DataType = ftString
+        Precision = -1
+        Size = 600
+      end    
+      item
+        Name = 'name_vlad'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'telefon_vlad'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'adres_vlad'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end>
+    Active = True
+    Database = MySQL55Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from marki'
+    )
+    Params = <>
+    left = 62
+    top = 52
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Database = MySQL55Connection1
+    left = 120
+    top = 52
+  end
+  object MySQL55Connection1: TMySQL55Connection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'marka'
+    KeepConnection = False
+    Password = 'root'
+    Transaction = SQLTransaction1
+    UserName = 'root'
+    CharSet = 'utf8'
+    HostName = '127.0.0.1'
+    LogEvents = []
+    left = 62
+    top = 120
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 120
+    top = 120
+  end
+  object MainMenu1: TMainMenu
+    left = 912
+    top = 536
+    object MenuItem1: TMenuItem
+      Caption = 'Файл'
+      object MenuItem6: TMenuItem
+        Caption = 'Выход'
+        OnClick = MenuItem6Click
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Поиск'
+      object MenuItem3: TMenuItem
+        Caption = 'Выполнить поиск'
+        OnClick = MenuItem3Click
+      end
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Добавить'
+      object MenuItem5: TMenuItem
+        Caption = 'Добавить марку'
+        OnClick = MenuItem5Click
+      end
+    end
+    object MenuItem7: TMenuItem
+      Caption = 'Справка'
+      object MenuItem8: TMenuItem
+        Caption = 'Справка'
+        OnClick = MenuItem8Click
+      end
+    end
+  end
+  object SQLQuery2: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'name'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'telefon'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'adres'
+        DataType = ftString
+        Precision = -1
+        Size = 300
+      end    
+      item
+        Name = 'marki'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end>
+    Database = MySQL55Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from vladelec'
+    )
+    Params = <>
+    left = 720
+    top = 96
+  end
+  object DataSource2: TDataSource
+    DataSet = SQLQuery2
+    left = 768
+    top = 96
+  end
+  object SQLQuery3: TSQLQuery
+    FieldDefs = <>
+    Database = MySQL55Connection1
+    Transaction = SQLTransaction1
+    Params = <>
+    left = 88
+    top = 360
+  end
+  object DataSource3: TDataSource
+    DataSet = SQLQuery3
+    left = 168
+    top = 360
+  end
+end

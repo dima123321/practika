@@ -1,0 +1,232 @@
+unit Unit2;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, sqldb, db, mysql55conn, FileUtil, Forms, Controls,
+  Graphics, Dialogs, StdCtrls, DbCtrls;
+
+type
+
+  { TForm2 }
+
+  TForm2 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    DataSource1: TDataSource;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    SQLQuery1: TSQLQuery;
+    SQLTransaction1: TSQLTransaction;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure ComboBox2Change(Sender: TObject);
+    procedure ComboBox3Change(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
+    procedure Edit2Change(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
+    procedure Edit4Change(Sender: TObject);
+    procedure Edit5Change(Sender: TObject);
+    procedure Edit6Change(Sender: TObject);
+    procedure Edit7Change(Sender: TObject);
+    procedure Edit8Change(Sender: TObject);
+    procedure Edit9Change(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure MySQL55Connection1AfterConnect(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+ uses Unit1;
+{$R *.lfm}
+
+{ TForm2 }
+
+procedure TForm2.MySQL55Connection1AfterConnect(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Button1Click(Sender: TObject);
+var a:string;
+  k:integer;
+begin
+ k:=0;
+ if Edit1.Text='' then k:=1;
+ if Edit2.Text='' then k:=1;
+ if Edit3.Text='' then k:=1;
+ if Edit4.Text='' then k:=1;
+ if Edit5.Text='' then k:=1;
+ if Edit6.Text='' then k:=1;
+ if Edit7.Text='' then k:=1;
+ if Edit8.Text='' then k:=1;
+ if Edit9.Text='' then k:=1;
+
+ if k=1 then MessageDlg('Ошибка','Заполните все поля', mtError, [mbOK],0)
+  else
+  if ((StrToInt(Edit3.Text)>2016) or (StrToInt(Edit3.Text)<1600)) then MessageDlg('Ошибка','В поле "Год выпуска" некоректные данные(можно вводить значение от 1600 до 2016)', mtError, [mbOK],0)
+  else
+  begin
+  a:= format('insert into marki (country, many, year, tematika, tirazh, osobenosti, name_vlad, adres_vlad, telefon_vlad) values ("%s", %d, %d, "%s", %d, "%s", "%s", "%s", "%s")',[Edit1.Text, StrToInt(Edit2.Text) , StrToInt(Edit3.Text), Edit4.Text, StrToInt(Edit5.Text), Edit6.Text, Edit7.Text, Edit8.Text, Edit9.Text]);
+  Form1.SQLQuery3.Close;
+  Form1.SQLQuery3.SQL.Clear;
+  Form1.SQLQuery3.SQL.Add(a);
+  Form1.SQLQuery3.ExecSQL;
+  Form1.SQLTransaction1.Commit;
+  Form1.SQLQuery1.Active:=True;
+  MessageDlg('Успешно','Запись добавлена', mtInformation, [mbOK],0);
+  end;
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+  Edit1.Text:='';
+  Edit2.Text:='';
+  Edit3.Text:='';
+  Edit4.Text:='';
+  Edit5.Text:='';
+  Edit6.Text:='';
+  Edit7.Text:='';
+  Edit8.Text:='';
+  Edit9.Text:='';
+  ComboBox1.Text:='';
+  ComboBox2.Text:='';
+end;
+
+procedure TForm2.ComboBox1Change(Sender: TObject);
+begin
+  Edit1.Text:=ComboBox1.Text;
+end;
+
+procedure TForm2.ComboBox2Change(Sender: TObject);
+begin
+ Edit4.Text:=ComboBox2.Text;
+end;
+
+procedure TForm2.ComboBox3Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit1Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit2Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit3Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit4Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit5Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit6Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit7Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit8Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.Edit9Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm2.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+ Form1.SQLQuery1.Close;
+ Form1.SQLQuery1.Open;
+ Form1.Show;
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  ComboBox1.Items.Clear;
+  ComboBox2.Items.Clear;
+
+  ComboBox1.Text:='';
+  ComboBox2.Text:='';
+
+  ComboBox1.Items.Add('Россия');
+  ComboBox1.Items.Add('Италия');
+  ComboBox1.Items.Add('Китай');
+  ComboBox1.Items.Add('Германия');
+  ComboBox1.Items.Add('Франция');
+  ComboBox1.Items.Add('Куба');
+  ComboBox1.Items.Add('США');
+  ComboBox1.Items.Add('Египет');
+  ComboBox1.Items.Add('Северная Корея');
+  ComboBox1.Items.Add('Южная Корея');
+  ComboBox1.Items.Add('Армения');
+  ComboBox1.Items.Add('Турция');
+  ComboBox1.Items.Add('Бразилия');
+  ComboBox1.Items.Add('Польша');
+  ComboBox1.Items.Add('Финляндия');
+  ComboBox1.Items.Add('Япония');
+  ComboBox1.Items.Add('Украина');
+  ComboBox1.Items.Add('Белоруссия');
+
+  ComboBox2.Items.Add('Флора');
+  ComboBox2.Items.Add('Фауна');
+  ComboBox2.Items.Add('Спорт');
+  ComboBox2.Items.Add('Автомобили');
+  ComboBox2.Items.Add('Олимпиада');
+  ComboBox2.Items.Add('Сигареты');
+  ComboBox2.Items.Add('Личности');
+  ComboBox2.Items.Add('Космос');
+  ComboBox2.Items.Add('Живопись');
+
+
+end;
+
+end.
+

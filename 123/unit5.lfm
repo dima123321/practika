@@ -1,0 +1,25 @@
+object Form5: TForm5
+  Left = 644
+  Height = 369
+  Top = 201
+  Width = 452
+  BorderStyle = bsDialog
+  Caption = 'Полная информация о марке'
+  ClientHeight = 369
+  ClientWidth = 452
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.4.0.4'
+  object Memo1: TMemo
+    Left = 8
+    Height = 354
+    Top = 8
+    Width = 438
+    Lines.Strings = (
+      'Memo1'
+    )
+    OnChange = Memo1Change
+    ReadOnly = True
+    TabOrder = 0
+  end
+end

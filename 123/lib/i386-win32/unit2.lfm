@@ -1,0 +1,279 @@
+object Form2: TForm2
+  Left = 503
+  Height = 636
+  Top = 75
+  Width = 727
+  BorderStyle = bsDialog
+  Caption = 'Добавление марки'
+  ClientHeight = 636
+  ClientWidth = 727
+  Color = 10485663
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.4.0.4'
+  object Label1: TLabel
+    Left = 24
+    Height = 15
+    Top = 32
+    Width = 42
+    Caption = 'Страна:'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    Left = 144
+    Height = 23
+    Top = 32
+    Width = 320
+    MaxLength = 50
+    OnChange = Edit1Change
+    TabOrder = 0
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 15
+    Top = 80
+    Width = 63
+    Caption = 'Стоимость:'
+    ParentColor = False
+  end
+  object Edit2: TEdit
+    Left = 144
+    Height = 23
+    Top = 80
+    Width = 320
+    MaxLength = 10
+    NumbersOnly = True
+    OnChange = Edit2Change
+    TabOrder = 1
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 15
+    Top = 128
+    Width = 71
+    Caption = 'Год выпуска:'
+    ParentColor = False
+  end
+  object Edit3: TEdit
+    Left = 144
+    Height = 23
+    Top = 128
+    Width = 320
+    MaxLength = 4
+    NumbersOnly = True
+    OnChange = Edit3Change
+    TabOrder = 2
+  end
+  object Label4: TLabel
+    Left = 24
+    Height = 15
+    Top = 176
+    Width = 55
+    Caption = 'Тематика:'
+    ParentColor = False
+  end
+  object Edit4: TEdit
+    Left = 144
+    Height = 23
+    Top = 176
+    Width = 320
+    MaxLength = 50
+    OnChange = Edit4Change
+    TabOrder = 3
+  end
+  object Label5: TLabel
+    Left = 24
+    Height = 15
+    Top = 273
+    Width = 77
+    Caption = 'Особенности:'
+    ParentColor = False
+  end
+  object Edit5: TEdit
+    Left = 144
+    Height = 23
+    Top = 224
+    Width = 320
+    MaxLength = 9
+    NumbersOnly = True
+    OnChange = Edit5Change
+    TabOrder = 4
+  end
+  object Label6: TLabel
+    Left = 24
+    Height = 15
+    Top = 321
+    Width = 55
+    Caption = 'Владелец:'
+    ParentColor = False
+  end
+  object Edit6: TEdit
+    Left = 144
+    Height = 23
+    Top = 272
+    Width = 320
+    MaxLength = 200
+    OnChange = Edit6Change
+    TabOrder = 5
+  end
+  object Button1: TButton
+    Left = 208
+    Height = 65
+    Top = 464
+    Width = 187
+    Caption = 'Добавить запись'
+    OnClick = Button1Click
+    TabOrder = 6
+  end
+  object Label7: TLabel
+    Left = 24
+    Height = 15
+    Top = 231
+    Width = 39
+    Caption = 'Тираж:'
+    ParentColor = False
+  end
+  object Edit7: TEdit
+    Left = 144
+    Height = 23
+    Top = 321
+    Width = 320
+    MaxLength = 50
+    OnChange = Edit7Change
+    TabOrder = 7
+  end
+  object Button2: TButton
+    Left = 248
+    Height = 25
+    Top = 560
+    Width = 112
+    Caption = 'Очистить поля'
+    OnClick = Button2Click
+    TabOrder = 8
+  end
+  object Edit8: TEdit
+    Left = 144
+    Height = 23
+    Top = 367
+    Width = 320
+    MaxLength = 50
+    OnChange = Edit8Change
+    TabOrder = 9
+  end
+  object Label8: TLabel
+    Left = 24
+    Height = 15
+    Top = 375
+    Width = 93
+    Caption = 'Адрес владельца'
+    ParentColor = False
+  end
+  object Edit9: TEdit
+    Left = 144
+    Height = 23
+    Top = 416
+    Width = 320
+    MaxLength = 50
+    NumbersOnly = True
+    OnChange = Edit9Change
+    TabOrder = 10
+  end
+  object Label9: TLabel
+    Left = 24
+    Height = 15
+    Top = 416
+    Width = 109
+    Caption = 'Телефон владельца'
+    ParentColor = False
+  end
+  object ComboBox1: TComboBox
+    Left = 496
+    Height = 23
+    Top = 32
+    Width = 168
+    ItemHeight = 15
+    OnChange = ComboBox1Change
+    Style = csDropDownList
+    TabOrder = 11
+  end
+  object ComboBox2: TComboBox
+    Left = 496
+    Height = 23
+    Top = 176
+    Width = 168
+    ItemHeight = 15
+    OnChange = ComboBox2Change
+    Style = csDropDownList
+    TabOrder = 12
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'country'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'many'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'year'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'tematika'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'tirazh'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end    
+      item
+        Name = 'osobenosti'
+        DataType = ftString
+        Precision = -1
+        Size = 600
+      end    
+      item
+        Name = 'vladelec'
+        DataType = ftString
+        Precision = -1
+        Size = 150
+      end>
+    Database = Form1.MySQL55Connection1
+    Transaction = Form1.SQLTransaction1
+    SQL.Strings = (
+      'select * from marki'
+    )
+    Params = <>
+    left = 120
+    top = 440
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Database = Form1.MySQL55Connection1
+    left = 24
+    top = 440
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 216
+    top = 440
+  end
+end
